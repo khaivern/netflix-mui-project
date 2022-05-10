@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
-import {useTheme} from "@mui/material/styles"
+import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
@@ -17,8 +17,9 @@ import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
-import ArrowDropDownCircleTwoToneIcon from "@mui/icons-material/ArrowDropDownCircleTwoTone";
 import MenuIcon from "@mui/icons-material/Menu";
+import ArrowDropDownCircleTwoToneIcon from "@mui/icons-material/ArrowDropDownCircleTwoTone";
+import { constructMagicSDKInstance } from "../../lib/magic-util";
 
 // Specific Styles for this page
 const SelectedTabStyles = {
@@ -38,10 +39,33 @@ const ListItemButtonStyles = {
 };
 
 // Header Section
-const Header = ({ username }) => {
+const Header = () => {
   const router = useRouter();
   const theme = useTheme();
-  const matchesMd = useMediaQuery(theme.breakpoints.down("md"))
+  const matchesMd = useMediaQuery(theme.breakpoints.down("md"));
+
+  // Username of currently authenticated user
+  const [username, setUsername] = useState("");
+  const magic = constructMagicSDKInstance();
+  useEffect(() => {
+    if (!magic) {
+      return;
+    }
+    const fetchUserEmail = async () => {
+      try {
+        const isLoggedIn = await magic.user.isLoggedIn();
+        if (!isLoggedIn) {
+          throw new Error("Not logged in");
+        }
+        const { email } = await magic.user.getMetadata();
+        setUsername(email);
+      } catch (err) {
+        console.log("Failed to fetch user email", err.message);
+      }
+    };
+    fetchUserEmail();
+  }, [magic]);
+
   // State to manage the currently active tab
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
 
@@ -63,9 +87,16 @@ const Header = ({ username }) => {
     setAnchorEl(null);
   };
 
-  const handleMenuItemClick = () => {
-    console.log("Logged out");
-    router.push("/login");
+  const handleMenuItemClick = async () => {
+    try {
+      await magic.user.logout();
+      setUsername("");
+      document.cookie = "DIDToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      router.push("/login");
+    } catch (err) {
+      console.log("Error logging out", err.message);
+      router.push("/login");
+    }
   };
 
   const tabs = (
@@ -75,8 +106,18 @@ const Header = ({ username }) => {
         onChange={(e, value) => setSelectedTabIndex(value)}
         sx={{ marginLeft: "auto" }}
         indicatorColor='primary'>
-        <Tab label='Home' sx={SelectedTabStyles} disableRipple onClick={() =>handleTabClick("/")} />
-        <Tab label='My List' sx={SelectedTabStyles} disableRipple onClick={() => handleTabClick("/favourites")} />
+        <Tab
+          label='Home'
+          sx={SelectedTabStyles}
+          disableRipple
+          onClick={() => handleTabClick("/")}
+        />
+        <Tab
+          label='My List'
+          sx={SelectedTabStyles}
+          disableRipple
+          onClick={() => handleTabClick("/favourites")}
+        />
         <Tab
           label={username}
           icon={<ArrowDropDownCircleTwoToneIcon />}
@@ -124,7 +165,7 @@ const Header = ({ username }) => {
   const drawer = (
     <>
       <SwipeableDrawer
-      anchor="right"
+        anchor='right'
         disableBackdropTransition={!iOS}
         disableDiscovery={iOS}
         open={drawerIsVisible}
@@ -150,7 +191,6 @@ const Header = ({ username }) => {
             onClick={() => {
               setDrawerIsVisible(false);
               setSelectedTabIndex(1);
-
             }}
             sx={ListItemButtonStyles}>
             <ListItemText>My List</ListItemText>
@@ -160,7 +200,7 @@ const Header = ({ username }) => {
             divider
             onClick={() => {
               setDrawerIsVisible(false);
-              handleMenuItemClick()
+              handleMenuItemClick();
             }}
             sx={ListItemButtonStyles}>
             <ListItemText>Sign Out</ListItemText>
@@ -182,13 +222,13 @@ const Header = ({ username }) => {
       </IconButton>
     </>
   );
-          
+
   return (
     <AppBar
       position='fixed'
       color='transparent'
       sx={(theme) => ({
-        backgroundImage: "linear-gradient(to top, rgba(0,0,0,0.3), rgba(0,0,0,0.9))",
+        backgroundImage: "linear-gradient(to top, rgba(0,0,0,0.3) 10%, rgba(0,0,0,0.9))",
         height: { xs: "4rem", md: "6rem" },
         justifyContent: "center",
         zIndex: theme.zIndex.drawer + 1,
@@ -204,7 +244,7 @@ const Header = ({ username }) => {
             />
           </Button>
         </Link>
-        {matchesMd? drawer : tabs}
+        {!username ? null : matchesMd ? drawer : tabs}
       </Toolbar>
     </AppBar>
   );

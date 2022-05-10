@@ -1,0 +1,854 @@
+{
+  "items": [
+    {
+      "kind": "youtube#searchResult",
+      "etag": "R-5LIAXm21DAZPB2CnsoMAHhITE",
+      "id": {
+        "kind": "youtube#playlist",
+        "playlistId": "PLetgZKHHaF-Zq1Abh-ZGC4liPd_CV3Uo4"
+      },
+      "snippet": {
+        "publishedAt": "2019-10-16T19:56:49Z",
+        "channelId": "UCzCVZuTHXEfch2qiZBQwdew",
+        "title": "Top Hip Hop Songs 2022 - Best Rap Music Playlist",
+        "description": "Hip Hop Playlist / Rap Playlist - New Rap Songs 2022 / Hip Hop Songs 2022 playlist from the Billboard Top 50 and Spotify viral ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/BkBkxM2MOmw/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/BkBkxM2MOmw/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/BkBkxM2MOmw/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Popular Songs",
+        "liveBroadcastContent": "none",
+        "publishTime": "2019-10-16T19:56:49Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "b8FdKZEFqYaMDTdbPSFqPfr9Dx4",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "ZW4Hy9B-E4M"
+      },
+      "snippet": {
+        "publishedAt": "2013-11-22T16:59:17Z",
+        "channelId": "UCbD8EppRX3ZwJSou-TVo90A",
+        "title": "탑(TOP) - 둠다다(DOOM DADA) at 2013 MAMA",
+        "description": "탑(TOP) - 둠다다(DOOM DADA) 2013 MAMA [2013 Mnet Asian Music Awards] 2013.11.22 at AsiaWorld-Expo, Arena Wanna ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/ZW4Hy9B-E4M/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/ZW4Hy9B-E4M/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/ZW4Hy9B-E4M/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Mnet K-POP",
+        "liveBroadcastContent": "none",
+        "publishTime": "2013-11-22T16:59:17Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "A0zqV8Vfh-QjfaD-hOQOTdrUvWg",
+      "id": {
+        "kind": "youtube#playlist",
+        "playlistId": "PL3-sRm8xAzY-556lOpSGH6wVzyofoGpzU"
+      },
+      "snippet": {
+        "publishedAt": "2017-06-05T00:07:15Z",
+        "channelId": "UC1XC2O_MgSQk_GC2S25rP-w",
+        "title": "Rap 2022 - New Rap Songs - Rap Music 2022 Playlist - Best Hip Hop 2022",
+        "description": "Rap 2022 - New Rap Songs - Rap Music 2022 Playlist - Best Hip Hop 2022 Every week, we update our playlist with the latest rap ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/2CNl_CCtE-I/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/2CNl_CCtE-I/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/2CNl_CCtE-I/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "AT Charts",
+        "liveBroadcastContent": "none",
+        "publishTime": "2017-06-05T00:07:15Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "vEhwqQgUmlzdYTK4iCm_0ODQX98",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "Qm4r1fyz61Y"
+      },
+      "snippet": {
+        "publishedAt": "2022-03-30T11:54:45Z",
+        "channelId": "UC5HIvr6g_jHPa8h36hdRMqw",
+        "title": "OLD SCHOOL HIP HOP MIX🏆️🏆Dr Dre, 50 Cent, Lil Jon, 2Pac, Snoop Dogg, B.I.G #HipHopCollection Vol.02",
+        "description": "OLD SCHOOL HIP HOP MIX🏆️  Dr Dre, 50 Cent, Lil Jon, 2Pac, Snoop Dogg, B.I.G #HipHopCollection Vol.02 OLD SCHOOL ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Qm4r1fyz61Y/default_live.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Qm4r1fyz61Y/mqdefault_live.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Qm4r1fyz61Y/hqdefault_live.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Hip Hop Collection",
+        "liveBroadcastContent": "live",
+        "publishTime": "2022-03-30T11:54:45Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "QhGE4qZURu7qYK7qBqvImHd-QDw",
+      "id": {
+        "kind": "youtube#playlist",
+        "playlistId": "PLxA687tYuMWjuNRTGvDuLQZjHaLQv3wYL"
+      },
+      "snippet": {
+        "publishedAt": "2020-04-14T00:22:09Z",
+        "channelId": "UCYXIviXPAaaaU_AOotpXTAw",
+        "title": "Best Hip-Hop &amp; Rap Songs 2021 / 2022 Playlist - Hip Hop / Rap Playlist",
+        "description": "Hip Hop Playlist featuring the best new hip-hop songs & rap songs of 2021 / 2022. This playlist is updated weekly to bring you the ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/311ZcJozOhI/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/311ZcJozOhI/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/311ZcJozOhI/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Revive Music",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-04-14T00:22:09Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "ursOvleTQrpIKqyR3osPscwOl1E",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "dAAYgKNnR2Y"
+      },
+      "snippet": {
+        "publishedAt": "2018-03-22T20:02:24Z",
+        "channelId": "UCKOlU7SLdtqmOx1w0nyAPtw",
+        "title": "Most Popular Rap Songs Of The Last 10 Years [2008 - 2018]",
+        "description": "Most Poplular Rap Songs Of The Last Decade (10 Years). Hip-hop has arguably been the best genre of music in the past two ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/dAAYgKNnR2Y/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/dAAYgKNnR2Y/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/dAAYgKNnR2Y/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Hip-Hop Universe",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-03-22T20:02:24Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "97ZGqJgtkNQlTZ9ufuGWD2lIoWA",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "zJEvV8HI_9Y"
+      },
+      "snippet": {
+        "publishedAt": "2014-02-07T05:19:46Z",
+        "channelId": "UCmGsaFORdb4Un0-5rKJm-4A",
+        "title": "[ENG SUB] GD&amp;TOP Rap Battle in NAN",
+        "description": "",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/zJEvV8HI_9Y/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/zJEvV8HI_9Y/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/zJEvV8HI_9Y/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "vidragon kwon",
+        "liveBroadcastContent": "none",
+        "publishTime": "2014-02-07T05:19:46Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "XRuWSjKhTc8qTXpZsTMCxkvwtiM",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "TsnL8RXHcz0"
+      },
+      "snippet": {
+        "publishedAt": "2021-01-07T03:00:11Z",
+        "channelId": "UCq_a9pETwEbYj8It4x6yjRg",
+        "title": "TOP 100 RAP SONGS OF 2020 (YOUR CHOICE)",
+        "description": "TOP 100 RAP SONGS OF THE YEAR (FANS CHOICE) This list is based on users votes. Here is the Top Rap Songs of 2020 ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/TsnL8RXHcz0/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/TsnL8RXHcz0/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/TsnL8RXHcz0/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "gentR",
+        "liveBroadcastContent": "none",
+        "publishTime": "2021-01-07T03:00:11Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "Y6FjsJODGoJ74Tsa4KsdYqOwFCY",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "QNx6flqyKDg"
+      },
+      "snippet": {
+        "publishedAt": "2022-05-08T15:45:33Z",
+        "channelId": "UCq_a9pETwEbYj8It4x6yjRg",
+        "title": "Top Rap Songs Of The Week - May 8, 2022 (New Rap Songs)",
+        "description": "In this video, you will hear the best songs of the week. There have been some great new songs released recently and the rap ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/QNx6flqyKDg/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/QNx6flqyKDg/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/QNx6flqyKDg/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "gentR",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-05-08T15:45:33Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "uAvEHaOBW8SpX9EJagS8zpGRlFo",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "jgDVwysBAbo"
+      },
+      "snippet": {
+        "publishedAt": "2019-11-25T15:59:32Z",
+        "channelId": "UC_o_-9JAWhqakJ-Du3lhmIw",
+        "title": "KOLEKSI RAP MALAYSIA 2019",
+        "description": "",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/jgDVwysBAbo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/jgDVwysBAbo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/jgDVwysBAbo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "zul salleh",
+        "liveBroadcastContent": "none",
+        "publishTime": "2019-11-25T15:59:32Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "6Ig26ybrdzMJrCcgn9oAfFMs7JQ",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "E6JAJ-0USUo"
+      },
+      "snippet": {
+        "publishedAt": "2018-08-01T01:37:31Z",
+        "channelId": "UCIJK2_WP6YINjviWgH292Eg",
+        "title": "8 FASTEST T.O.P RAPS",
+        "description": "Matt breaks down T.O.P's fastest 8 raps of his career. Mostly moderately paced, never leaving his comfort zone in Big Bang, ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/E6JAJ-0USUo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/E6JAJ-0USUo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/E6JAJ-0USUo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "CarKpop",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-08-01T01:37:31Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "TRkZ3kGsCe-mCRAC5DB3I3nVMzI",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "ifuFQTgsyAw"
+      },
+      "snippet": {
+        "publishedAt": "2020-06-09T21:15:31Z",
+        "channelId": "UCbAIiGjS8amFKJCTr97ngHw",
+        "title": "Spotify Top 50 Songs | Hip Hop | Rap | Playlist | June | 2020",
+        "description": "Spotify Playlist: https://open.spotify.com/playlist/5QTmIFx60XaQ927ZAPQW8L?si=kyjEHS8eTha7JqwC3L0pXQ You can find ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/ifuFQTgsyAw/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/ifuFQTgsyAw/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/ifuFQTgsyAw/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Top Tunes",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-06-09T21:15:31Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "nZ722A8f4Y-S7NUNHUW08Wir5BI",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "b9f0UAGfpZk"
+      },
+      "snippet": {
+        "publishedAt": "2022-01-06T22:21:20Z",
+        "channelId": "UC9eVWAiPFIXbpHQn_-Pejog",
+        "title": "TOP 100 RAP SONGS OF 2021! (FAN CHOICES)",
+        "description": "MY NEW SONG IS OUT NOW! Go stream it & I'll give will LOVE YOU FOREVER! YOUTUBE LINK!",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/b9f0UAGfpZk/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/b9f0UAGfpZk/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/b9f0UAGfpZk/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "inteNsifyCharts",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-01-06T22:21:20Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "AIwy9h_DkMIu86UVRQzjl9nECkY",
+      "id": {
+        "kind": "youtube#playlist",
+        "playlistId": "PLAPo1R_GVX4IZGbDvUH60bOwIOnZplZzM"
+      },
+      "snippet": {
+        "publishedAt": "2016-06-18T13:18:06Z",
+        "channelId": "UCOSBRPNJLqXcWK4UVdWCy0Q",
+        "title": "The 500 Greatest Hip-Hop Songs of All Time",
+        "description": "",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/lsJLLEwUYZM/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/lsJLLEwUYZM/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/lsJLLEwUYZM/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Best Hip Hop Songs Of All Time",
+        "liveBroadcastContent": "none",
+        "publishTime": "2016-06-18T13:18:06Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "PGbb5kC3SyGu6wdn8IBnK4U8YmA",
+      "id": {
+        "kind": "youtube#playlist",
+        "playlistId": "PL-FVH5VWgRPHNz24zZ5_FLHQWoidN6O1d"
+      },
+      "snippet": {
+        "publishedAt": "2019-01-29T04:51:29Z",
+        "channelId": "UCwLFjBCQ4CmOIT1KMDE6fUw",
+        "title": "Best Hip-Hop &amp; Rap Songs 2022 Playlist",
+        "description": "Hip Hop playlist featuring the best new hip-hop songs & rap songs of 2021. This playlist is UPDATED DAILY to bring you the top ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/9YZiXdNnVgw/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/9YZiXdNnVgw/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/9YZiXdNnVgw/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Wicked Sounds",
+        "liveBroadcastContent": "none",
+        "publishTime": "2019-01-29T04:51:29Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "2ItkFnAKnEtV1WeYPiKpnbyT9fE",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "Iyz3_FYVgz8"
+      },
+      "snippet": {
+        "publishedAt": "2019-03-02T16:27:04Z",
+        "channelId": "UCg-8npCX2gRA56Yel5seKEg",
+        "title": "Top 5 Rap songs | Top 5 Hip-hop songs | English | 2019 |",
+        "description": "Top 5 Rap songs. Hey guys I am back with a new video with the best 5 Rap songs. I have researched and found some of the best ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/Iyz3_FYVgz8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/Iyz3_FYVgz8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/Iyz3_FYVgz8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Songholics",
+        "liveBroadcastContent": "none",
+        "publishTime": "2019-03-02T16:27:04Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "bzB0a7i81XUbSOlqNeTPMmeUlDw",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "bOA_WhT6ff8"
+      },
+      "snippet": {
+        "publishedAt": "2018-08-28T19:25:46Z",
+        "channelId": "UC-MMd_17p3qNSTVbLdiYzow",
+        "title": "Gangster Rap Mix | Best Gangster Hip Hop Music 2018",
+        "description": "You are now listening to: Gangster Rap Mix | Best Gangster Hip Hop Music 2018 #4 Support Rap Mafia by subscribing: ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/bOA_WhT6ff8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/bOA_WhT6ff8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/bOA_WhT6ff8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Rap Mafia",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-08-28T19:25:46Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "agnxWkvPz2-ydyZ8tahaIY_b46I",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "8WRfkXUSHGs"
+      },
+      "snippet": {
+        "publishedAt": "2021-07-29T09:00:03Z",
+        "channelId": "UClu9PmWiSRoxgM07vrhXPqA",
+        "title": "Best Trap Music Mix 2021 🔥 Hip Hop 2021 Rap 🔥 Future Bass Remix 2021",
+        "description": "Best Trap Music Mix 2021 Hip Hop 2021 Rap Future Bass Remix 2021 ◢ Mix By Trap Music Movement: ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/8WRfkXUSHGs/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/8WRfkXUSHGs/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/8WRfkXUSHGs/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Trap Music Movement",
+        "liveBroadcastContent": "none",
+        "publishTime": "2021-07-29T09:00:03Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "Zgza5fRurUmlxjtra62sTV59CvY",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "DBUyoAyZ5vI"
+      },
+      "snippet": {
+        "publishedAt": "2020-08-22T15:00:11Z",
+        "channelId": "UC11R_RIx7WyJiDH9a7RfwjQ",
+        "title": "Dragon Ball Super Rap Cypher | &quot;Tournament Of Power&quot; | Daddyphatsnaps ft Rustage, Fabvl, NLJ &amp; More!",
+        "description": "Spotify: https://spoti.fi/2Nkdqsb Itunes: https://apple.co/2NVfnLm The Dragon Ball Super Rap Cypher \"Tournament Of Power\" IS ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/DBUyoAyZ5vI/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/DBUyoAyZ5vI/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/DBUyoAyZ5vI/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Daddyphatsnaps YouTube",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-08-22T15:00:11Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "_6rwrWAvW1R4xTllUy_YRKZz54U",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "isBftkYMHdw"
+      },
+      "snippet": {
+        "publishedAt": "2022-03-24T02:00:12Z",
+        "channelId": "UCaWd5_7JhbQBe4dknZhsHJg",
+        "title": "Top 20 Greatest Rap Songs of All Time",
+        "description": "Check out our featured song: \"Cold Case\" by Smoking Mirrors! https://youtu.be/ZtxetOS6wfo Every rap fan worth their salt has ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/isBftkYMHdw/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/isBftkYMHdw/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/isBftkYMHdw/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "WatchMojo.com",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-03-24T02:00:12Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "XxkQ0nI31G4CWTPmyhPA8iuCA7w",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "87w1y874gwM"
+      },
+      "snippet": {
+        "publishedAt": "2018-03-17T18:14:57Z",
+        "channelId": "UCKOlU7SLdtqmOx1w0nyAPtw",
+        "title": "Best Rap Songs Of Each Year [1979 - 2018]",
+        "description": "Best Rap Song Of Each Year 2020, Best Hip-Hop Songs 2020, Most Popular Rap Songs 2020, Evolution Of Hip-Hop The best ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/87w1y874gwM/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/87w1y874gwM/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/87w1y874gwM/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Hip-Hop Universe",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-03-17T18:14:57Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "jlvHyZR8Ob4f5PAs7Kkthk5IkgE",
+      "id": {
+        "kind": "youtube#playlist",
+        "playlistId": "PL9iYAjunfEKpYu4V4kDygqvJgLd3XDEXy"
+      },
+      "snippet": {
+        "publishedAt": "2018-06-08T06:19:25Z",
+        "channelId": "UC8JrOmHI1riDbe7wyVnbnog",
+        "title": "TOP 100 NAJPOPULARNIEJSZYCH POLSKI RAP/TRAP/HIPHOP",
+        "description": "TOP 100 NAJPOPULARNIEJSZYCH POLSKI RAP/TRAP/HIPHOP 2022 Polski Rap 2022 - https://bit.ly/3xtkN2w Polski Rap 2022 ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/QjWxUfTTMu4/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/QjWxUfTTMu4/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/QjWxUfTTMu4/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "TopVideos: Polska",
+        "liveBroadcastContent": "none",
+        "publishTime": "2018-06-08T06:19:25Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "AsbAPtqRcprdGALixrIHBEX4TrI",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "yGCDJux5uJA"
+      },
+      "snippet": {
+        "publishedAt": "2020-02-06T16:00:12Z",
+        "channelId": "UCe_Fx4EZAgKjDz0aQ_Y7hSA",
+        "title": "TOP 6 RAPPERS Around The World! | Got Talent Global",
+        "description": "Watch the best rapper/singers on Got Talent. Check out the judge's reactions and some of their emotional song performances.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/yGCDJux5uJA/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/yGCDJux5uJA/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/yGCDJux5uJA/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Got Talent Global",
+        "liveBroadcastContent": "none",
+        "publishTime": "2020-02-06T16:00:12Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "BRSRwof2xnAG1xo9wuJPh5DLEDA",
+      "id": {
+        "kind": "youtube#playlist",
+        "playlistId": "PLUarU1HDBmlz8Yxs04vQYtIu-1gtJxVSl"
+      },
+      "snippet": {
+        "publishedAt": "2019-01-03T18:32:06Z",
+        "channelId": "UCcCfXg1-ldnzVLKqnNug7dA",
+        "title": "2022 Billboard Hot 100 | Hip Hop &amp; Rap Songs Playlist | Top 40 Charts 2022",
+        "description": "Top 100 Rap Songs of The Week 2022 - Best Hip-Hop & Rap Hits 2020 Hip Hop Playlist 2020 January 2020 Best Songs Vevo ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/A5YH8VhMHH8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/A5YH8VhMHH8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/A5YH8VhMHH8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Stiff Lauren",
+        "liveBroadcastContent": "none",
+        "publishTime": "2019-01-03T18:32:06Z"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "pjTk-X5i-wFWWQf32_gcA3Q_BPw",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "cbt8iMrLVsE"
+      },
+      "snippet": {
+        "publishedAt": "2022-04-24T19:28:51Z",
+        "channelId": "UC9eVWAiPFIXbpHQn_-Pejog",
+        "title": "BEST RAP SONGS OF 2022 SO FAR! 🔥",
+        "description": "MY NEW SONG IS OUT NOW! Go stream it & I'll give will LOVE YOU FOREVER! YOUTUBE LINK ...",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/cbt8iMrLVsE/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/cbt8iMrLVsE/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/cbt8iMrLVsE/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "inteNsifyCharts",
+        "liveBroadcastContent": "none",
+        "publishTime": "2022-04-24T19:28:51Z"
+      }
+    }
+  ]
+}

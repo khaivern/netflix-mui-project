@@ -7,13 +7,13 @@ import Grid from "@mui/material/Grid";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 const Banner = ({ title, subtitle, imageUrl }) => {
   return (
-    <Grid container sx={{ height: "50rem" }}>
+    <Grid container sx={{ height: "50rem", position: "relative" }}>
       <Grid
         item
         container
         direction='column'
-        sx={{ position: "absolute", marginTop: "12rem", marginLeft: "4rem" }}>
-        <Grid item>
+        sx={{ position: "absolute", marginTop: "12rem" }}>
+        <Grid item sx={{marginLeft: "4rem"}}>
           <Typography
             variant='h1'
             sx={{
@@ -42,7 +42,7 @@ const Banner = ({ title, subtitle, imageUrl }) => {
             {subtitle}
           </Typography>
         </Grid>
-        <Grid item sx={{ marginTop: "2rem" }}>
+        <Grid item sx={{ marginTop: "2rem", marginLeft: "4rem" }}>
           <Button
             variant='contained'
             color='error'
