@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 
 const netflixRed = "#b71c1c";
-const netflixBlack = "";
+const netflixGold = "#d4af37";
 const netflixGrey = "#868686";
 const netflixBackground = "#121212"
 
@@ -10,7 +10,8 @@ const theme = createTheme({
   palette: {
     common:{
       grey: netflixGrey,
-    
+      black: netflixBackground,
+      gold: netflixGold
     },
     primary: {
       main: netflixRed,

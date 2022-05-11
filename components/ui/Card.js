@@ -7,11 +7,8 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
 import Image from "next/image";
-import { useRouter } from "next/router";
 
-const CardComponent = ({ id, size, imageUrl, title, description }) => {
-  const router = useRouter();
-
+const CardComponent = ({ id, size, imageUrl, title, description, onCardClick }) => {
   const sizeMap = {
     small: { width: 250, height: 510, minHeight: 300 },
     medium: { width: 400, height: 400, minHeight: 200 },
@@ -49,7 +46,7 @@ const CardComponent = ({ id, size, imageUrl, title, description }) => {
     <Box
       sx={{
         position: "relative",
-        "&:hover": { zIndex: 3000 },
+        "&:hover": { zIndex: 1299 }, //  z-index of modal is 1300
         minHeight: sizeMap[size].minHeight,
         height: sizeMap[size].height,
       }}>
@@ -62,7 +59,7 @@ const CardComponent = ({ id, size, imageUrl, title, description }) => {
           height: "100%",
           "&.MuiCard-root": { backgroundColor: "primary.dark" },
         }}>
-        <CardActionArea onClick={() => router.push(`/video/${id}`)}>
+        <CardActionArea onClick={() => onCardClick({id, title, description})}>
           <Image
             onError={handleImageError}
             src={image}

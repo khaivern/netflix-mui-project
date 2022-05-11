@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import CardComponent from "./Card";
 
-const Carousel = ({ title, videos, size }) => {
+const Carousel = ({ title, videos, size, onCardClick }) => {
   return (
     <Grid container direction='column' >
       <Grid item sx={{ marginLeft: "5rem", marginTop: "2rem" }}>
@@ -20,7 +20,7 @@ const Carousel = ({ title, videos, size }) => {
         sx={{ overflowX: "scroll", overflowY: "hidden", padding: "2rem 5rem" }}>
         {videos.map((video) => (
           <Grid item key={video.id} sx={{margin: "0 0.2rem"}}>
-            <CardComponent id={video.id} size={size} imageUrl={video.imageUrl} title={video.title} description={video.description} />
+            <CardComponent onCardClick={onCardClick} id={video.id} size={size} imageUrl={video.imageUrl} title={video.title} description={video.description} />
           </Grid>
         ))}
       </Grid>
