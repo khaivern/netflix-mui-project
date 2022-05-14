@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
@@ -10,7 +11,6 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import EmailIcon from "@mui/icons-material/Email";
 import { constructMagicSDKInstance } from "../lib/magic-util";
-import { setCookie } from "../lib/cookie-util";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,16 +27,34 @@ const Login = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const signInHandler = async () => {
+  const signInHandler = async (e) => {
+    e.preventDefault();
     setIsLoading(true);
     const magic = constructMagicSDKInstance();
     try {
       const DIDToken = await magic.auth.loginWithMagicLink({ email });
-      if (DIDToken) {
-        setCookie("DIDToken", DIDToken, 1)
-        router.push("/");
+      if (DIDToken && (await magic.user.isLoggedIn())) {
+        const DIDTokenWithCustomLifeSpan = await magic.user.getIdToken({
+          lifespan: 7 * 24 * 60 * 60,
+        });
+        const response = await axios.post(
+          "/api/login",
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${DIDTokenWithCustomLifeSpan}`,
+              "Content-type": "application/json",
+            },
+          }
+        );
+        const { success } = response.data;
+        if (success) {
+          router.push("/");
+        } else {
+          throw new Error("Received false response");
+        }
       } else {
-        throw new Error("No DIDToken was returned");
+        throw new Error("No DIDToken or failed logged in check was returned");
       }
     } catch (err) {
       console.log("Error Logging in magic", err.message);
@@ -44,10 +62,10 @@ const Login = () => {
     }
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     const handleRouteChange = () => {
       setIsLoading(false);
-    }
+    };
     // subscribe to event changes
     router.events.on("routeChangeComplete", handleRouteChange);
     router.events.on("routeChangeError", handleRouteChange);
@@ -56,8 +74,8 @@ const Login = () => {
       // Unsubscribe from event changes
       router.events.off("routeChangeComplete", handleRouteChange);
       router.events.off("routeChangeError", handleRouteChange);
-    }
-  },[router])
+    };
+  }, [router]);
 
   return (
     <Grid
@@ -86,50 +104,54 @@ const Login = () => {
             paddingBottom: "4rem",
             paddingTop: "1rem",
           }}>
-          <Grid item sx={{ marginTop: "2rem", marginBottom: "1rem" }}>
-            <Typography variant='h3' sx={{ color: "primary.main", fontSize: "3rem" }}>
-              Sign In
-            </Typography>
-          </Grid>
-          <Grid item sx={{ marginBottom: "1.5rem" }}>
-            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-              <EmailIcon
-                fontSize='large'
-                sx={{ color: "#fff", mr: 1, my: !!emailHelperText ? 3 : 0.5 }}
-              />
-              <TextField
-                label='Email Address'
-                id='email'
-                variant='standard'
-                value={email}
-                onChange={emailChangeHandler}
-                fullWidth
-                color='secondary'
-                error={!!emailHelperText}
-                helperText={emailHelperText}
-              />
-            </Box>
-          </Grid>
           <Grid item>
-            {isLoading ? (
-              <Box sx={{ display: "flex" }} justifyContent='center'>
-                <CircularProgress />
-              </Box>
-            ) : (
-              <Button
-                variant='contained'
-                fullWidth
-                sx={{
-                  "&.Mui-disabled": {
-                    color: "rgba(255,255,255,1)",
-                    backgroundColor: "rgba(255,255,255,0.7)",
-                  },
-                }}
-                disabled={!email || !!emailHelperText}
-                onClick={signInHandler}>
-                Sign In
-              </Button>
-            )}
+            <Box component='form' autoComplete='off' noValidate onSubmit={(e) => signInHandler(e)}>
+              <Grid item sx={{ marginTop: "2rem", marginBottom: "1rem" }}>
+                <Typography variant='h3' sx={{ color: "primary.main", fontSize: "3rem" }}>
+                  Sign In
+                </Typography>
+              </Grid>
+              <Grid item sx={{ marginBottom: "1.5rem" }}>
+                <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                  <EmailIcon
+                    fontSize='large'
+                    sx={{ color: "#fff", mr: 1, my: !!emailHelperText ? 3 : 0.5 }}
+                  />
+                  <TextField
+                    label='Email Address'
+                    id='email'
+                    variant='standard'
+                    value={email}
+                    onChange={emailChangeHandler}
+                    fullWidth
+                    color='secondary'
+                    error={!!emailHelperText}
+                    helperText={emailHelperText}
+                  />
+                </Box>
+              </Grid>
+              <Grid item>
+                {isLoading ? (
+                  <Box sx={{ display: "flex" }} justifyContent='center'>
+                    <CircularProgress />
+                  </Box>
+                ) : (
+                  <Button
+                    type='submit'
+                    variant='contained'
+                    fullWidth
+                    sx={{
+                      "&.Mui-disabled": {
+                        color: "rgba(255,255,255,1)",
+                        backgroundColor: "rgba(255,255,255,0.7)",
+                      },
+                    }}
+                    disabled={!email || !!emailHelperText}>
+                    Sign In
+                  </Button>
+                )}
+              </Grid>
+            </Box>
           </Grid>
         </Grid>
       </Grid>
@@ -138,6 +160,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-

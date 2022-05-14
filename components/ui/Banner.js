@@ -5,7 +5,8 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-const Banner = ({ title, subtitle, imageUrl }) => {
+import Link from "next/link";
+const Banner = ({ title, subtitle, imageUrl, videoId }) => {
   return (
     <Grid container sx={{ height: "50rem", position: "relative" }}>
       <Grid
@@ -43,6 +44,7 @@ const Banner = ({ title, subtitle, imageUrl }) => {
           </Typography>
         </Grid>
         <Grid item sx={{ marginTop: "2rem", marginLeft: "4rem" }}>
+          <Link href={`/video/${videoId}`} >
           <Button
             variant='contained'
             color='error'
@@ -50,6 +52,7 @@ const Banner = ({ title, subtitle, imageUrl }) => {
             endIcon={<PlayArrowIcon />}>
             Play
           </Button>
+          </Link>
         </Grid>
       </Grid>
       <Box

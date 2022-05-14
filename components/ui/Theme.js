@@ -4,6 +4,7 @@ const netflixRed = "#b71c1c";
 const netflixGold = "#d4af37";
 const netflixGrey = "#868686";
 const netflixBackground = "#121212"
+const netflixBlue ="#17a2b8"
 
 const theme = createTheme({
   
@@ -11,7 +12,8 @@ const theme = createTheme({
     common:{
       grey: netflixGrey,
       black: netflixBackground,
-      gold: netflixGold
+      gold: netflixGold,
+      blue: netflixBlue,
     },
     primary: {
       main: netflixRed,
@@ -65,7 +67,8 @@ const theme = createTheme({
       fontFamily: "Roboto Flex",
       fontWeight: 800,
       fontSize: "1.3rem",
-      color: "#fff"
+      color: "#fff",
+      color: netflixGold
     },
     body1: {
       fontFamily: "Roboto Flex",
@@ -73,9 +76,9 @@ const theme = createTheme({
       color: "#fff"
     },
     body2 : {
-      fontFamily: "Macondo",
-      fontSize: "0.9rem",
-      color: netflixGrey
+      fontSize: "1rem",
+      fontWeight: 600,
+      color: "#fff"
     }
   },
 });

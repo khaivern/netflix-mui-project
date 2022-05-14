@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
 import Grid from "@mui/material/Grid";
 import Dialog from "@mui/material/Dialog";
@@ -11,6 +11,8 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import { useMediaQuery, useTheme } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import VideoContext from "../store/video-context";
 
 const VideoDetails = ({ videoDetailData, open, onClose }) => {
   // Resize modal for different screen sizes
@@ -20,6 +22,22 @@ const VideoDetails = ({ videoDetailData, open, onClose }) => {
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
 
   const { id, title, description } = videoDetailData;
+  const router = useRouter()
+  const {closeVideo} = useContext(VideoContext)
+  useEffect(()=> {
+    const handleRouteChange = () => {
+      closeVideo();
+    };
+    // subscribe to event changes
+    router.events.on("routeChangeComplete", handleRouteChange);
+    router.events.on("routeChangeError", handleRouteChange);
+
+    return () => {
+      // Unsubscribe from event changes
+      router.events.off("routeChangeComplete", handleRouteChange);
+      router.events.off("routeChangeError", handleRouteChange);
+    }
+  },[router, closeVideo])
 
   return (
     <Grid container sx={{ marginTop: "6rem" }}>

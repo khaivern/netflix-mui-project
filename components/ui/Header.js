@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
@@ -18,8 +19,9 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import ArrowDropDownCircleTwoToneIcon from "@mui/icons-material/ArrowDropDownCircleTwoTone";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { constructMagicSDKInstance } from "../../lib/magic-util";
+
 
 // Specific Styles for this page
 const SelectedTabStyles = {
@@ -70,31 +72,30 @@ const Header = () => {
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
 
   // When user clicks on a tab/drawer
-  const handleTabClick = (to) => {
-    router.push(e.target.value);
+  const handleRouteChange = (to) => {
+    router.push(to);
   };
 
   // States and functions to manage username dropdown menu component.
-  const [anchorEl, setAnchorEl] = useState(false);
-
-  const menuIsVisible = Boolean(anchorEl);
-
+  const [menuIsVisible, setMenuIsVisible] = useState(false);
+  const headerRef = useRef()
+  
   const handleClickListItem = (e) => {
-    setAnchorEl(e.currentTarget);
+    setMenuIsVisible(true);
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
+    setMenuIsVisible(false);
   };
 
-  const handleMenuItemClick = async () => {
+  const handleSignOutClick = async () => {
     try {
+      await axios.post("/api/signout")
       await magic.user.logout();
       setUsername("");
-      document.cookie = "DIDToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       router.push("/login");
     } catch (err) {
-      console.log("Error logging out", err.message);
+      console.log("Error logging out:", err.message);
       router.push("/login");
     }
   };
@@ -110,17 +111,17 @@ const Header = () => {
           label='Home'
           sx={SelectedTabStyles}
           disableRipple
-          onClick={() => handleTabClick("/")}
+          onClick={() => handleRouteChange("/")}
         />
         <Tab
           label='My List'
           sx={SelectedTabStyles}
           disableRipple
-          onClick={() => handleTabClick("/favourites")}
+          onClick={() => handleRouteChange("/mylist")}
         />
         <Tab
           label={username}
-          icon={<ArrowDropDownCircleTwoToneIcon />}
+          icon={<ArrowDropDownIcon />}
           iconPosition='end'
           sx={SelectedTabStyles}
           disableRipple
@@ -129,7 +130,7 @@ const Header = () => {
       </Tabs>
       <Menu
         id='username-dropdown-menu'
-        anchorEl={anchorEl}
+        anchorEl={headerRef.current}
         open={menuIsVisible}
         onClose={handleMenuClose}
         MenuListProps={{
@@ -144,15 +145,15 @@ const Header = () => {
         }}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "center",
+          horizontal: "right",
         }}
         keepMounted>
         <MenuItem
-          onClick={handleMenuItemClick}
+          onClick={handleSignOutClick}
           sx={{
             "&:hover": { color: "#fff" },
           }}>
-          <Box component='span'>Sign out</Box>
+          Sign out
         </MenuItem>
       </Menu>
     </>
@@ -180,6 +181,7 @@ const Header = () => {
             onClick={() => {
               setDrawerIsVisible(false);
               setSelectedTabIndex(0);
+              handleRouteChange("/")
             }}
             sx={ListItemButtonStyles}>
             <ListItemText>Home</ListItemText>
@@ -191,6 +193,7 @@ const Header = () => {
             onClick={() => {
               setDrawerIsVisible(false);
               setSelectedTabIndex(1);
+              handleRouteChange("/mylist");
             }}
             sx={ListItemButtonStyles}>
             <ListItemText>My List</ListItemText>
@@ -200,7 +203,8 @@ const Header = () => {
             divider
             onClick={() => {
               setDrawerIsVisible(false);
-              handleMenuItemClick();
+              setSelectedTabIndex()
+              handleSignOutClick();
             }}
             sx={ListItemButtonStyles}>
             <ListItemText>Sign Out</ListItemText>
@@ -225,6 +229,7 @@ const Header = () => {
 
   return (
     <AppBar
+      ref={headerRef}
       position='fixed'
       color='transparent'
       sx={(theme) => ({
@@ -235,7 +240,7 @@ const Header = () => {
       })}>
       <Toolbar>
         <Link href='/'>
-          <Button sx={{ marginLeft: "1rem" }}>
+          <Button sx={{ marginLeft: "1rem" }} disableRipple onClick={()=> setSelectedTabIndex(0)}>
             <Box
               component='img'
               src='/static/netflix-icon.svg'

@@ -3,16 +3,17 @@ import { ThemeProvider } from "@mui/material/styles";
 
 import theme from "../components/ui/Theme";
 import Header from "../components/ui/Header";
-import { constructMagicSDKInstance } from "../lib/magic-util";
+import { VideoProvider } from "../store/video-context";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider theme={theme}>
-      <Header />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <VideoProvider>
+      <ThemeProvider theme={theme}>
+        <Header />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </VideoProvider>
   );
 }
 
 export default MyApp;
-

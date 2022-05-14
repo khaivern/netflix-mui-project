@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { motion } from "framer-motion";
 
 import Box from "@mui/material/Box";
@@ -7,13 +7,16 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
 import Image from "next/image";
+import VideoContext from "../../store/video-context";
 
-const CardComponent = ({ id, size, imageUrl, title, description, onCardClick }) => {
-  const sizeMap = {
-    small: { width: 250, height: 510, minHeight: 300 },
-    medium: { width: 400, height: 400, minHeight: 200 },
-    large: { width: 550, height: 450, minHeight: 300 },
-  };
+const sizeMap = {
+  small: { width: 250, height: 510, minHeight: 300 },
+  medium: { width: 400, height: 400, minHeight: 200 },
+  large: { width: 550, height: 450, minHeight: 300 },
+};
+
+const CardComponent = ({ id, size, imageUrl, title, description }) => {
+  const videoCtx = useContext(VideoContext);
 
   // Set image to default if missing
   const [image, setImage] = useState(imageUrl);
@@ -59,7 +62,7 @@ const CardComponent = ({ id, size, imageUrl, title, description, onCardClick }) 
           height: "100%",
           "&.MuiCard-root": { backgroundColor: "primary.dark" },
         }}>
-        <CardActionArea onClick={() => onCardClick({id, title, description})}>
+        <CardActionArea onClick={() => videoCtx.showVideo({id, title, description})}>
           <Image
             onError={handleImageError}
             src={image}
