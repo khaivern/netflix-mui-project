@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import axios from "axios";
 import jwt from "jsonwebtoken";
 
 import Grid from "@mui/material/Grid";
 import Carousel from "../components/ui/Carousel";
 import { readCookie } from "../lib/cookie-util";
-import LoadingSpinner from "../components/ui/LoadingSpinner";
-import { useRouter } from "next/router";
 import { getListOfVideosByVideoIds } from "../lib/videos-util";
 import { getUserFavouritedVideoIds } from "../lib/hasura-util";
 import VideoDetails from "../components/VideoDetail";
+import LoadingSpinner from "../components/ui/LoadingSpinner";
 import VideoContext from "../store/video-context";
 
-const MyList = ({videos}) => {
+const MyList = ({ videos }) => {
   const [favourites, setFavourites] = useState(videos);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
@@ -27,8 +27,8 @@ const MyList = ({videos}) => {
         if (!revalidatedVideos) {
           throw new Error("No videos returned from database");
         }
-        
-        if(revalidatedVideos !== videos) {
+
+        if (revalidatedVideos !== videos) {
           setFavourites(revalidatedVideos);
         }
       } catch (err) {
@@ -48,7 +48,7 @@ const MyList = ({videos}) => {
     };
   }, [router]);
 
-  const selectedVideo = useContext(VideoContext).video
+  const selectedVideo = useContext(VideoContext).video;
 
   return (
     <Grid container direction='column' marginTop='6rem'>
@@ -75,31 +75,30 @@ const MyList = ({videos}) => {
 
 export default MyList;
 
-
-export async function getServerSideProps (context) {
+export async function getServerSideProps(context) {
   try {
-    const {token} = context.req.cookies;
-    if(!token) {
-      throw new Error("Token does not exist, please try logging in")
-    }  
+    const { token } = context.req.cookies;
+    if (!token) {
+      throw new Error("Token does not exist, please try logging in");
+    }
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    if(!decodedToken) {
+    if (!decodedToken) {
       throw new Error("Failed to verify token");
     }
-    const videoIds = await getUserFavouritedVideoIds({userId: decodedToken.issuer, token});
+    const videoIds = await getUserFavouritedVideoIds({ userId: decodedToken.issuer, token });
     const videos = await getListOfVideosByVideoIds(videoIds);
     return {
       props: {
-        videos
+        videos,
       },
-    }
+    };
   } catch (err) {
     console.log(err);
     return {
       redirect: {
         destination: "/login",
-        permanent: false
-      }
-    }
+        permanent: false,
+      },
+    };
   }
 }

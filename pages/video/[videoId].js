@@ -10,6 +10,8 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 import { useMediaQuery, useTheme } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
@@ -35,6 +37,10 @@ const IconButtonStyles = (color) => ({
   },
 });
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
+});
+
 const VideoDetailPage = ({ videoDetailsObject }) => {
   const router = useRouter();
   const theme = useTheme();
@@ -51,30 +57,69 @@ const VideoDetailPage = ({ videoDetailsObject }) => {
     };
   }, [router]);
 
+  // Manages the snackbar/toast
+  const [open, setOpen] = useState(false);
+  const [alertData, setAlertData] = useState({ message: "", status: "" });
+  const handleClose = (e, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+  useEffect(() => {
+    if (alertData && ["success", "error", "warning"].includes(alertData.status) && open) {
+      const timer = setTimeout(() => {
+        setOpen(false);
+      }, 6000);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [alertData, open]);
+  // end--
+
   // React Button Handlers
   const [reaction, setReaction] = useState(null);
   const handleReactClick = async (reactionVal) => {
     setReaction(reactionVal);
     const { token, DIDToken } = readCookie();
-    await axios.post(
-      `/api/video/${videoDetailsObject.id}/${token}`,
-      {
-        reaction: reactionVal, // cannot use reaction var since it has state updates are batched
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${DIDToken}`,
+    try {
+      setAlertData({ message: "Your request is on it's way now.", status: "info" });
+      setOpen(true);
+      await axios.post(
+        `/api/video/${videoDetailsObject.id}/${token}`,
+        {
+          reaction: reactionVal, // cannot use reaction var since it has state updates are batched
         },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${DIDToken}`,
+          },
+        }
+      );
+      if (reactionVal === 1) {
+        setAlertData({
+          message: `${videoDetailsObject.title} has been saved to your list page.`,
+          status: "success",
+        });
+      } else {
+        setAlertData({
+          message: `${videoDetailsObject.title} has been removed from your list page.`,
+          status: "warning",
+        });
       }
-    );
+    } catch (err) {
+      console.log(err);
+      setReaction(null);
+      setAlertData({ message: "Failed to save video", status: "error" });
+    }
   };
 
   useEffect(() => {
     const fetchVideoReaction = async () => {
       const { token, DIDToken } = readCookie();
       try {
-        
         const response = await axios.get(`/api/video/${videoDetailsObject.id}/${token}`, {
           headers: {
             "Content-Type": "application/json",
@@ -89,18 +134,16 @@ const VideoDetailPage = ({ videoDetailsObject }) => {
         console.log(err);
       }
     };
-    if (!videoDetailsObject) {
+    if (!videoDetailsObject || reaction) {
       return;
     }
     fetchVideoReaction();
   }, [videoDetailsObject, reaction]);
 
   // end--
-
   if (!videoDetailsObject) {
     return <LoadingSpinner />;
   }
-
   const { id, title, description, likeCount, publishedAt, tags, viewCount, channelTitle } =
     videoDetailsObject;
 
@@ -223,7 +266,7 @@ const VideoDetailPage = ({ videoDetailsObject }) => {
             </List>
           </Grid>
         </Grid>
-        <Grid container direction={{ xs: "column", md: "row" }} marginTop='1.75rem'>
+        <Grid item container direction={{ xs: "column", md: "row" }} marginTop='1.75rem'>
           {/* Title, Description */}
 
           <Grid
@@ -350,6 +393,11 @@ const VideoDetailPage = ({ videoDetailsObject }) => {
           </Grid>
         </Grid>
       </Grid>
+      <Snackbar open={open} onClose={handleClose}>
+        <Alert onClose={handleClose} severity={alertData.status} sx={{ width: "100%" }}>
+          {alertData.message}
+        </Alert>
+      </Snackbar>
       {isLoading && <LoadingSpinner asOverlay />}
     </>
   );
