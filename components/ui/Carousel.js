@@ -4,7 +4,14 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import CardComponent from "./Card";
 
-const Carousel = ({ title, videos, size, wrap="nowrap", centered="initial" }) => {
+const Carousel = ({
+  title,
+  videos,
+  size,
+  wrap = "nowrap",
+  centered = "initial",
+  showSummary = true,
+}) => {
   const formattedTitle = title
     .split(" ")
     .map((word) => word.split("")[0].toUpperCase() + word.slice(1))
@@ -26,16 +33,17 @@ const Carousel = ({ title, videos, size, wrap="nowrap", centered="initial" }) =>
         sx={{
           overflowX: "scroll",
           overflowY: "hidden",
-          padding: { xs: "1rem 2rem", md: "2rem 5rem" },
+          padding: { xs: "1rem 3rem", md: centered ? "2rem 3rem" : "2rem 5rem" },
         }}>
         {videos.map((video) => (
-          <Grid item key={video.id} sx={{ margin: "0 0.2rem" }}>
+          <Grid item key={video.id} sx={{ margin: "0.5rem 0.5rem" }}>
             <CardComponent
               id={video.id}
               size={size}
               imageUrl={video.imageUrl}
               title={video.title}
               description={video.description}
+              showSummary={showSummary}
             />
           </Grid>
         ))}

@@ -1,5 +1,5 @@
+import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import axios from "axios";
 import jwt from "jsonwebtoken";
 
@@ -9,67 +9,65 @@ import { readCookie } from "../lib/cookie-util";
 import { getListOfVideosByVideoIds } from "../lib/videos-util";
 import { getUserFavouritedVideoIds } from "../lib/hasura-util";
 import VideoDetails from "../components/VideoDetail";
-import LoadingSpinner from "../components/ui/LoadingSpinner";
 import VideoContext from "../store/video-context";
+import { decodeToken } from "../lib/token-util";
 
 const MyList = ({ videos }) => {
   const [favourites, setFavourites] = useState(videos);
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    const fetchMyFavouriteVideos = async () => {
-      try {
-        const { token } = readCookie();
+  // useEffect(() => {
+  //   const fetchMyFavouriteVideos = async () => {
+  //     try {
+  //       const { token } = readCookie();
 
-        const response = await axios.post("/api/video/favourites", {
-          token,
-        });
-        const revalidatedVideos = response.data.videos;
-        if (!revalidatedVideos) {
-          throw new Error("No videos returned from database");
-        }
+  //       const response = await axios.post("/api/video/favourites", {
+  //         token,
+  //       });
+  //       const revalidatedVideos = response.data.videos;
+  //       if (!revalidatedVideos) {
+  //         throw new Error("No videos returned from database");
+  //       }
 
-        if (revalidatedVideos !== videos) {
-          setFavourites(revalidatedVideos);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchMyFavouriteVideos();
-  }, [videos]);
-
-  const router = useRouter();
-  useEffect(() => {
-    router.events.on("routeChangeStart", () => setIsLoading(true));
-    router.events.on("routeChangeComplete", () => setIsLoading(false));
-    return () => {
-      router.events.off("routeChangeStart", () => setIsLoading(true));
-      router.events.off("routeChangeComplete", () => setIsLoading(false));
-    };
-  }, [router]);
+  //       if (revalidatedVideos !== videos) {
+  //         setFavourites(revalidatedVideos);
+  //       }
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   fetchMyFavouriteVideos();
+  // }, [videos]);
 
   const selectedVideo = useContext(VideoContext).video;
 
   return (
-    <Grid container direction='column' marginTop='6rem'>
-      <Grid item container>
-        <Carousel
-          title='My Favourites'
-          videos={favourites}
-          size='medium'
-          wrap='wrap'
-          centered='center'
-        />
-        {isLoading && <LoadingSpinner asOverlay />}
+    <>
+      <Head>
+        <title>My List</title>
+        <meta name='description' content='My Favourited Videos' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <Grid container direction='column' marginTop='6rem'>
+        <Grid item container direction={{ xs: "column", md: "row" }}>
+          {favourites && (
+            <Carousel
+              title='My Favourites'
+              videos={favourites}
+              size='medium'
+              wrap='wrap'
+              centered='center'
+              showSummary={false}
+            />
+          )}
+        </Grid>
+        {selectedVideo && (
+          <VideoDetails
+            open={!!selectedVideo}
+            videoDetailData={selectedVideo}
+            onClose={() => videoCtx.closeVideo()}
+          />
+        )}
       </Grid>
-      {selectedVideo && (
-        <VideoDetails
-          open={!!selectedVideo}
-          videoDetailData={selectedVideo}
-          onClose={() => videoCtx.closeVideo()}
-        />
-      )}
-    </Grid>
+    </>
   );
 };
 
@@ -81,12 +79,11 @@ export async function getServerSideProps(context) {
     if (!token) {
       throw new Error("Token does not exist, please try logging in");
     }
-    const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    if (!decodedToken) {
-      throw new Error("Failed to verify token");
-    }
-    const videoIds = await getUserFavouritedVideoIds({ userId: decodedToken.issuer, token });
-    const videos = await getListOfVideosByVideoIds(videoIds);
+    const decodedToken = await decodeToken(token);
+    const videoIds =
+      decodedToken.issuer &&
+      (await getUserFavouritedVideoIds({ userId: decodedToken.issuer, token }));
+    const videos = (videoIds && (await getListOfVideosByVideoIds(videoIds))) || [];
     return {
       props: {
         videos,

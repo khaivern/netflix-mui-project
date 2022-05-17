@@ -22,9 +22,9 @@ const VideoDetails = ({ videoDetailData, open, onClose }) => {
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
 
   const { id, title, description } = videoDetailData;
-  const router = useRouter()
-  const {closeVideo} = useContext(VideoContext)
-  useEffect(()=> {
+  const router = useRouter();
+  const { closeVideo } = useContext(VideoContext);
+  useEffect(() => {
     const handleRouteChange = () => {
       closeVideo();
     };
@@ -36,8 +36,8 @@ const VideoDetails = ({ videoDetailData, open, onClose }) => {
       // Unsubscribe from event changes
       router.events.off("routeChangeComplete", handleRouteChange);
       router.events.off("routeChangeError", handleRouteChange);
-    }
-  },[router, closeVideo])
+    };
+  }, [router, closeVideo]);
 
   return (
     <Grid container sx={{ marginTop: "6rem" }}>
@@ -54,7 +54,11 @@ const VideoDetails = ({ videoDetailData, open, onClose }) => {
             scroll='paper'
             aria-labelledby='scroll-dialog-title'
             aria-describedby='scroll-dialog-description'>
-            <DialogTitle id='scroll-dialog-title' sx={{color: "common.gold", fontWeight: 700, fontSize: "1.75rem"}}>{title}</DialogTitle>
+            <DialogTitle
+              id='scroll-dialog-title'
+              sx={{ color: "common.gold", fontWeight: 700, fontSize: "1.75rem" }}>
+              {title}
+            </DialogTitle>
             <DialogContent dividers={true}>
               <Box
                 sx={{
@@ -71,31 +75,14 @@ const VideoDetails = ({ videoDetailData, open, onClose }) => {
                   height='100%'
                   sx={{ minHeight: 300 }}
                   src={`https://www.youtube.com/embed/${id}?autoplay=0&origin=http://example.com`}
-                  frameBorder='0' />
+                  frameBorder='0'
+                />
               </Box>
               <Grid container columnSpacing={10} marginTop='1.75rem'>
-                <Grid item container direction='column' md={8}>
+                <Grid item container direction='column'>
                   <Grid item>
                     <Typography variant='body1' paragraph>
                       {description}
-                    </Typography>
-                  </Grid>
-                </Grid>
-                <Grid item container direction='column' md={4}>
-                  <Grid item>
-                    <Typography variant='body1'>
-                      <Box component='span' sx={{ color: "common.grey" }}>
-                        Cast:
-                      </Box>
-                      Netflix
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant='body1'>
-                      <Box component='span' sx={{ color: "common.grey" }}>
-                        View Count:
-                      </Box>
-                      123456
                     </Typography>
                   </Grid>
                 </Grid>

@@ -3,13 +3,12 @@ import { createTheme } from "@mui/material/styles";
 const netflixRed = "#b71c1c";
 const netflixGold = "#d4af37";
 const netflixGrey = "#868686";
-const netflixBackground = "#121212"
-const netflixBlue ="#17a2b8"
+const netflixBackground = "#121212";
+const netflixBlue = "#17a2b8";
 
 const theme = createTheme({
-  
   palette: {
-    common:{
+    common: {
       grey: netflixGrey,
       black: netflixBackground,
       gold: netflixGold,
@@ -19,7 +18,7 @@ const theme = createTheme({
       main: netflixRed,
     },
     secondary: {
-      main: "#fff"
+      main: "#fff",
     },
     background: {
       default: netflixBackground,
@@ -57,7 +56,7 @@ const theme = createTheme({
       fontSize: "4rem",
       fontWeight: 600,
       color: netflixRed,
-      textShadow: "3px 0 0 #000, 0 -3px 0 #000, 0 3px 0 #000, -3px 0 0 #000"
+      textShadow: "3px 0 0 #000, 0 -3px 0 #000, 0 3px 0 #000, -3px 0 0 #000",
     },
     h4: {
       fontFamily: "Macondo",
@@ -68,18 +67,18 @@ const theme = createTheme({
       fontWeight: 800,
       fontSize: "1.3rem",
       color: "#fff",
-      color: netflixGold
+      color: netflixGold,
     },
     body1: {
       fontFamily: "Roboto Flex",
       fontSize: "1.5rem",
-      color: "#fff"
+      color: "#fff",
     },
-    body2 : {
+    body2: {
       fontSize: "1rem",
       fontWeight: 600,
-      color: "#fff"
-    }
+      color: "#fff",
+    },
   },
 });
 

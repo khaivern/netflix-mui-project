@@ -9,9 +9,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    const {metadata, DIDToken} = await extractMagicUserMetadata(req.headers)
-    if(!metadata || !DIDToken) {
-      throw new Error("null metadata and/or DIDToken")
+    const { metadata, DIDToken } = await extractMagicUserMetadata(req.headers);
+    if (!metadata || !DIDToken) {
+      throw new Error("null metadata and/or DIDToken");
     }
     // For Hasura JWT Authentication
     const token = jwt.sign(
@@ -27,13 +27,13 @@ export default async function handler(req, res) {
       },
       process.env.JWT_SECRET_KEY
     );
-    
+
     const newUser = await isNewUser(token, metadata.issuer);
-    newUser && await createNewUser(token, { email: metadata.email, issuer: metadata.issuer });
-    createCookie({token, DIDToken}, res);
-    return res.status(200).json({ success: true, message: "Success, logged user in"});
+    newUser && (await createNewUser(token, { email: metadata.email, issuer: metadata.issuer }));
+    createCookie({ token, DIDToken }, res);
+    return res.status(200).json({ success: true, message: "Success, logged user in" });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ success:false, message: "Failed to login" });
+    return res.status(500).json({ success: false, message: "Failed to login" });
   }
 }

@@ -9,8 +9,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <VideoProvider>
       <ThemeProvider theme={theme}>
-        <Header />
-        <Component {...pageProps} />
+        <Header>
+          <Component {...pageProps} />
+        </Header>
       </ThemeProvider>
     </VideoProvider>
   );

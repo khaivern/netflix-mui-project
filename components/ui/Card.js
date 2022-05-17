@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 import Box from "@mui/material/Box";
@@ -6,16 +7,15 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
-import Image from "next/image";
 import VideoContext from "../../store/video-context";
 
 const sizeMap = {
-  small: { width: 250, height: 510, minHeight: 300 },
-  medium: { width: 400, height: 400, minHeight: 200 },
-  large: { width: 550, height: 450, minHeight: 300 },
+  small: { width: 200, height: 350, titleLength: 13, descriptionLength: 30 },
+  medium: { width: 400, height: 220, titleLength: 30, descriptionLength: 80 },
+  large: { width: 600, height: 330, titleLength: 45, descriptionLength: 100 },
 };
 
-const CardComponent = ({ id, size, imageUrl, title, description }) => {
+const CardComponent = ({ id, size, imageUrl, title, description, showSummary = true }) => {
   const videoCtx = useContext(VideoContext);
 
   // Set image to default if missing
@@ -29,7 +29,7 @@ const CardComponent = ({ id, size, imageUrl, title, description }) => {
   if (!title) {
     readableTitle = "Missing Title";
   } else {
-    readableTitle = title.split(" ").slice(0, 8).join(" ");
+    readableTitle = title.slice(0, sizeMap[size].titleLength);
     if (title.length > readableTitle.length) {
       readableTitle += "...";
     }
@@ -40,45 +40,66 @@ const CardComponent = ({ id, size, imageUrl, title, description }) => {
   if (!description) {
     readableDescription = "Missing Description";
   } else {
-    readableDescription = description.split(" ").slice(0, 15).join(" ");
+    readableDescription = description
+      .split(" ")
+      .filter((word) => !word.includes("http"))
+      .join(" ")
+      .toLowerCase()
+      .slice(0, sizeMap[size].descriptionLength);
     if (description.length > readableDescription.length) {
       readableDescription += "...";
     }
   }
+
   return (
     <Box
       sx={{
         position: "relative",
         "&:hover": { zIndex: 1299 }, //  z-index of modal is 1300
-        minHeight: sizeMap[size].minHeight,
-        height: sizeMap[size].height,
       }}>
       <Card
         component={motion.div}
         whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
         sx={{
-          maxWidth: sizeMap[size].width,
-          minWidth: sizeMap[size].width,
-          height: "100%",
+          width: sizeMap[size].width,
+          height: sizeMap[size].height,
           "&.MuiCard-root": { backgroundColor: "primary.dark" },
         }}>
-        <CardActionArea onClick={() => videoCtx.showVideo({id, title, description})}>
-          <Image
-            onError={handleImageError}
-            src={image}
-            height={sizeMap[size].minHeight}
-            width={sizeMap[size].width}
-            objectFit='cover'
-            alt={`image of ${title}`}
-          />
-          <CardContent>
-            <Typography gutterBottom variant='h5' component='div'>
-              {readableTitle}
-            </Typography>
-            <Typography variant='body2' paragraph>
-              {readableDescription}
-            </Typography>
-          </CardContent>
+        <CardActionArea onClick={() => videoCtx.showVideo({ id, title, description })}>
+          <Box
+            sx={{ position: "relative", width: sizeMap[size].width, height: sizeMap[size].height }}>
+            <Image
+              onError={handleImageError}
+              src={image}
+              objectFit='cover'
+              layout='fill'
+              alt={`image of ${title}`}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: -90,
+                minHeight: 136,
+                backgroundColor: "rgba(0,0,0,0.8)",
+                border: "2px solid #fff",
+                opacity: showSummary ? 1 : 0,
+              }}
+              width='100%'
+              component={motion.div}
+              whileHover={{
+                translateY: -90,
+                transition: { duration: 0.5 },
+              }}>
+              <CardContent>
+                <Typography gutterBottom variant='h5' component='div'>
+                  {readableTitle}
+                </Typography>
+                <Typography variant='body2' paragraph>
+                  {readableDescription}
+                </Typography>
+              </CardContent>
+            </Box>
+          </Box>
         </CardActionArea>
       </Card>
     </Box>

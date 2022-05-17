@@ -1,6 +1,6 @@
 import { getUserFavouritedVideoIds } from "../../../lib/hasura-util";
 import { getListOfVideosByVideoIds } from "../../../lib/videos-util";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -8,9 +8,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    const {token} = req.body;
+    const { token } = req.body;
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    const videoIds = await getUserFavouritedVideoIds({userId: decodedToken.issuer, token })
+    const videoIds = await getUserFavouritedVideoIds({ userId: decodedToken.issuer, token });
     const videos = await getListOfVideosByVideoIds(videoIds);
     return res.status(200).json({ message: "Successfully fetched videos", videos });
   } catch (err) {

@@ -8,7 +8,8 @@ export default async function handler(req, res) {
       .json({ message: "Invalid Request Method, only accepted are post and get" });
   }
 
-  const [videoId, token] = req.query.videoData;
+  const token = req.cookies.token;
+  const videoId = req.query.videoId;
   if (!videoId || !token) {
     return res.status(500).json({ message: "Video Id or token cannot be empty" });
   }
@@ -44,7 +45,7 @@ export default async function handler(req, res) {
         throw new Error("Invalid reaction recieved");
       }
       const data = await getVideoDataByUserId({ videoId, userId: decodedToken.issuer, token });
-      
+
       if (!data) {
         throw new Error("Received an error from Hasura when querying for videos");
       }
@@ -64,7 +65,9 @@ export default async function handler(req, res) {
 
       return res.status(201).json({ success: true, message: "Successfully stored user reaction" });
     } catch (err) {
-      return res.status(500).json({ success: false, message: "Failed to send user video metadata" });
+      return res
+        .status(500)
+        .json({ success: false, message: "Failed to send user video metadata" });
     }
   }
 }

@@ -17,11 +17,12 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
+import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { constructMagicSDKInstance } from "../../lib/magic-util";
-
+import LoadingSpinner from "./LoadingSpinner";
 
 // Specific Styles for this page
 const SelectedTabStyles = {
@@ -41,7 +42,7 @@ const ListItemButtonStyles = {
 };
 
 // Header Section
-const Header = () => {
+const Header = ({ children }) => {
   const router = useRouter();
   const theme = useTheme();
   const matchesMd = useMediaQuery(theme.breakpoints.down("md"));
@@ -50,9 +51,6 @@ const Header = () => {
   const [username, setUsername] = useState("");
   const magic = constructMagicSDKInstance();
   useEffect(() => {
-    if (!magic) {
-      return;
-    }
     const fetchUserEmail = async () => {
       try {
         const isLoggedIn = await magic.user.isLoggedIn();
@@ -65,11 +63,25 @@ const Header = () => {
         console.log("Failed to fetch user email", err.message);
       }
     };
-    fetchUserEmail();
+    if (magic) {
+      fetchUserEmail();
+    }
   }, [magic]);
 
   // State to manage the currently active tab
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
+
+  // Update the selected tab index using the parameter from url
+  const pathname = router.pathname;
+  useEffect(() => {
+    if (pathname === "/") {
+      setSelectedTabIndex(0);
+    } else if (pathname === "/mylist") {
+      setSelectedTabIndex(1);
+    } else {
+      setSelectedTabIndex();
+    }
+  }, [pathname]);
 
   // When user clicks on a tab/drawer
   const handleRouteChange = (to) => {
@@ -78,8 +90,8 @@ const Header = () => {
 
   // States and functions to manage username dropdown menu component.
   const [menuIsVisible, setMenuIsVisible] = useState(false);
-  const headerRef = useRef()
-  
+  const headerRef = useRef();
+
   const handleClickListItem = (e) => {
     setMenuIsVisible(true);
   };
@@ -90,7 +102,7 @@ const Header = () => {
 
   const handleSignOutClick = async () => {
     try {
-      await axios.post("/api/signout")
+      await axios.post("/api/signout");
       await magic.user.logout();
       setUsername("");
       router.push("/login");
@@ -147,13 +159,17 @@ const Header = () => {
           vertical: "bottom",
           horizontal: "right",
         }}
+        transformOrigin={{
+          horizontal: 150,
+          vertical: 30,
+        }}
         keepMounted>
         <MenuItem
           onClick={handleSignOutClick}
           sx={{
             "&:hover": { color: "#fff" },
           }}>
-          Sign out
+          <Typography variant='body2'>Sign out</Typography>
         </MenuItem>
       </Menu>
     </>
@@ -181,7 +197,7 @@ const Header = () => {
             onClick={() => {
               setDrawerIsVisible(false);
               setSelectedTabIndex(0);
-              handleRouteChange("/")
+              handleRouteChange("/");
             }}
             sx={ListItemButtonStyles}>
             <ListItemText>Home</ListItemText>
@@ -203,7 +219,7 @@ const Header = () => {
             divider
             onClick={() => {
               setDrawerIsVisible(false);
-              setSelectedTabIndex()
+              setSelectedTabIndex();
               handleSignOutClick();
             }}
             sx={ListItemButtonStyles}>
@@ -227,31 +243,48 @@ const Header = () => {
     </>
   );
 
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    router.events.on("routeChangeStart", () => setIsLoading(true));
+    router.events.on("routeChangeComplete", () => setIsLoading(false));
+    return () => {
+      router.events.off("routeChangeStart", () => setIsLoading(true));
+      router.events.off("routeChangeComplete", () => setIsLoading(false));
+    };
+  }, [router]);
+
   return (
-    <AppBar
-      ref={headerRef}
-      position='fixed'
-      color='transparent'
-      sx={(theme) => ({
-        backgroundImage: "linear-gradient(to top, rgba(0,0,0,0.3) 10%, rgba(0,0,0,0.9))",
-        height: { xs: "4rem", md: "6rem" },
-        justifyContent: "center",
-        zIndex: theme.zIndex.drawer + 1,
-      })}>
-      <Toolbar>
-        <Link href='/'>
-          <Button sx={{ marginLeft: "1rem" }} disableRipple onClick={()=> setSelectedTabIndex(0)}>
-            <Box
-              component='img'
-              src='/static/netflix-icon.svg'
-              alt='Netflix Logo'
-              sx={{ height: { xs: "2rem", md: "3rem" } }}
-            />
-          </Button>
-        </Link>
-        {!username ? null : matchesMd ? drawer : tabs}
-      </Toolbar>
-    </AppBar>
+    <>
+      <AppBar
+        ref={headerRef}
+        position='fixed'
+        color='transparent'
+        sx={(theme) => ({
+          backgroundImage: "linear-gradient(to top, rgba(0,0,0,0.3) 10%, rgba(0,0,0,0.9))",
+          height: { xs: "4rem", md: "6rem" },
+          justifyContent: "center",
+          zIndex: theme.zIndex.drawer + 1,
+        })}>
+        <Toolbar>
+          <Link href='/'>
+            <Button
+              sx={{ marginLeft: "1rem" }}
+              disableRipple
+              onClick={() => setSelectedTabIndex(0)}>
+              <Box
+                component='img'
+                src='/static/netflix-icon.svg'
+                alt='Netflix Logo'
+                sx={{ height: { xs: "2rem", md: "3rem" } }}
+              />
+            </Button>
+          </Link>
+          {!username ? null : matchesMd ? drawer : tabs}
+        </Toolbar>
+      </AppBar>
+      {children}
+      {isLoading && <LoadingSpinner asOverlay />}
+    </>
   );
 };
 

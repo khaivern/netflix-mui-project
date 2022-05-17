@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 
 import Grid from "@mui/material/Grid";
@@ -42,20 +42,9 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const VideoDetailPage = ({ videoDetailsObject }) => {
-  const router = useRouter();
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    router.events.on("routeChangeStart", () => setIsLoading(true));
-    router.events.on("routeChangeComplete", () => setIsLoading(false));
-    return () => {
-      router.events.off("routeChangeStart", () => setIsLoading(true));
-      router.events.off("routeChangeComplete", () => setIsLoading(false));
-    };
-  }, [router]);
 
   // Manages the snackbar/toast
   const [open, setOpen] = useState(false);
@@ -87,7 +76,7 @@ const VideoDetailPage = ({ videoDetailsObject }) => {
       setAlertData({ message: "Your request is on it's way now.", status: "info" });
       setOpen(true);
       await axios.post(
-        `/api/video/${videoDetailsObject.id}/${token}`,
+        `/api/video/${videoDetailsObject.id}`,
         {
           reaction: reactionVal, // cannot use reaction var since it has state updates are batched
         },
@@ -120,7 +109,7 @@ const VideoDetailPage = ({ videoDetailsObject }) => {
     const fetchVideoReaction = async () => {
       const { token, DIDToken } = readCookie();
       try {
-        const response = await axios.get(`/api/video/${videoDetailsObject.id}/${token}`, {
+        const response = await axios.get(`/api/video/${videoDetailsObject.id}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${DIDToken}`,
@@ -161,8 +150,6 @@ const VideoDetailPage = ({ videoDetailsObject }) => {
         sx={{
           marginTop: { xs: "2rem", md: "6rem" },
           paddingLeft: { xs: 0, md: "3rem" },
-          // marginLeft: { xs: 0, md: "2rem", lg: "3rem" },
-          // marginRight: { xs: 0, md: "2rem", lg: "3rem" },
         }}>
         <Grid
           item
@@ -398,7 +385,6 @@ const VideoDetailPage = ({ videoDetailsObject }) => {
           {alertData.message}
         </Alert>
       </Snackbar>
-      {isLoading && <LoadingSpinner asOverlay />}
     </>
   );
 };
