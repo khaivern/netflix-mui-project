@@ -15,6 +15,7 @@ import { constructMagicSDKInstance } from "../lib/magic-util";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [emailHelperText, setEmailHelperText] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const emailChangeHandler = (e) => {
     setEmail(e.target.value);
     const isValid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value);
@@ -29,6 +30,7 @@ const Login = () => {
   const router = useRouter();
   const signInHandler = async (e) => {
     e.preventDefault();
+    setErrorMessage("");
     setIsLoading(true);
     const magic = constructMagicSDKInstance();
     try {
@@ -37,27 +39,27 @@ const Login = () => {
         const DIDTokenWithCustomLifeSpan = await magic.user.getIdToken({
           lifespan: 7 * 24 * 60 * 60,
         });
-        const response = await axios.post(
-          "/api/login",
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${DIDTokenWithCustomLifeSpan}`,
-              "Content-type": "application/json",
-            },
-          }
-        );
+        
+        const response = await axios.get("/api/login", {
+          headers: {
+            Authorization: `Bearer ${DIDTokenWithCustomLifeSpan}`,
+            "Content-type": "application/json",
+          },
+        });
+
         const { success } = response.data;
+        console.log({success})
         if (success) {
           router.push("/");
         } else {
-          throw new Error("Received false response");
+          throw new Error("Failed to log in, please try again later.");
         }
       } else {
         throw new Error("No DIDToken or failed logged in check was returned");
       }
     } catch (err) {
       // console.log("Error Logging in magic", err.message);
+      setErrorMessage(err.message);
       setIsLoading(false);
     }
   };
@@ -105,7 +107,7 @@ const Login = () => {
             paddingTop: "1rem",
           }}>
           <Grid item>
-            <Box component='form' autoComplete='off' noValidate onSubmit={(e) => signInHandler(e)}>
+            <Box component='form' autoComplete='off' noValidate onSubmit={signInHandler}>
               <Grid item sx={{ marginTop: "2rem", marginBottom: "1rem" }}>
                 <Typography variant='h3' sx={{ color: "primary.main", fontSize: "3rem" }}>
                   Sign In
@@ -151,6 +153,13 @@ const Login = () => {
                   </Button>
                 )}
               </Grid>
+              {errorMessage && (
+                <Grid item marginTop='1.5rem'>
+                  <Typography variant='body2' color='primary.light' textAlign='right'>
+                    {errorMessage}
+                  </Typography>
+                </Grid>
+              )}
             </Box>
           </Grid>
         </Grid>

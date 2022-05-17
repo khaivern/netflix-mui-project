@@ -55,7 +55,7 @@ const CardComponent = ({ id, size, imageUrl, title, description, showSummary = t
     <Box
       sx={{
         position: "relative",
-        "&:hover": { zIndex: 1299 }, //  z-index of modal is 1300
+        "&:hover": { zIndex: 1298 }, //  z-index of modal is 1300
       }}>
       <Card
         component={motion.div}

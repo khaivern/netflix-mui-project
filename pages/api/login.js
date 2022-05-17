@@ -4,7 +4,7 @@ import { createNewUser, isNewUser } from "../../lib/hasura-util";
 import { extractMagicUserMetadata } from "../../lib/magic-util";
 
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
+  if (req.method !== "GET") {
     return res.status(500).json({ message: "BAD Request Method" });
   }
 

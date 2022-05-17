@@ -79,7 +79,7 @@ const Header = ({ children }) => {
     } else if (pathname === "/mylist") {
       setSelectedTabIndex(1);
     } else {
-      setSelectedTabIndex();
+      setSelectedTabIndex(false);
     }
   }, [pathname]);
 
@@ -219,7 +219,7 @@ const Header = ({ children }) => {
             divider
             onClick={() => {
               setDrawerIsVisible(false);
-              setSelectedTabIndex();
+              setSelectedTabIndex(false);
               handleSignOutClick();
             }}
             sx={ListItemButtonStyles}>
@@ -263,7 +263,7 @@ const Header = ({ children }) => {
           backgroundImage: "linear-gradient(to top, rgba(0,0,0,0.3) 10%, rgba(0,0,0,0.9))",
           height: { xs: "4rem", md: "6rem" },
           justifyContent: "center",
-          zIndex: theme.zIndex.drawer + 1,
+          zIndex: 1299,
         })}>
         <Toolbar>
           <Link href='/'>
