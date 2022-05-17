@@ -6,7 +6,12 @@ export async function middleware(req) {
   const decodedToken = token && (await decodeToken(token));
   const pathname = req.nextUrl["pathname"];
   
-  if (decodedToken?.issuer || pathname.includes("/static") || pathname.includes("/api/login") || pathname.includes("/api/signout")) {
+  if (
+    decodedToken?.issuer ||
+    pathname.includes("/static") ||
+    pathname.includes("/api/login") ||
+    pathname.includes("/api/signout")
+  ) {
     return NextResponse.next();
   }
 

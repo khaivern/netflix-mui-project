@@ -12,16 +12,22 @@ const Carousel = ({
   centered = "initial",
   showSummary = true,
 }) => {
-  const formattedTitle = title
-    .split(" ")
-    .map((word) => word.split("")[0].toUpperCase() + word.slice(1))
-    .join(" ");
+  const formatTitle = () => {
+    try {
+      return title
+        .split(" ")
+        .map((word) => word?.split("")[0].toUpperCase() + word?.slice(1))
+        .join(" ");
+    } catch (err) {
+      return "Missing Title";
+    }
+  };
 
   return (
     <Grid container direction='column'>
       <Grid item sx={{ marginLeft: { xs: "1.5rem", md: "5rem" }, marginTop: "2rem" }}>
         <Typography variant='h3' gutterBottom>
-          {formattedTitle}
+          {formatTitle()}
         </Typography>
       </Grid>
       <Grid

@@ -26,20 +26,21 @@ const Login = () => {
     }
   };
 
+  const magic = constructMagicSDKInstance();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const signInHandler = async (e) => {
     e.preventDefault();
     setErrorMessage("");
     setIsLoading(true);
-    const magic = constructMagicSDKInstance();
     try {
       const DIDToken = await magic.auth.loginWithMagicLink({ email });
-      if (DIDToken && (await magic.user.isLoggedIn())) {
+      if (DIDToken) {
         const DIDTokenWithCustomLifeSpan = await magic.user.getIdToken({
           lifespan: 7 * 24 * 60 * 60,
         });
-        
+
         const response = await axios.get("/api/login", {
           headers: {
             Authorization: `Bearer ${DIDTokenWithCustomLifeSpan}`,
@@ -48,8 +49,8 @@ const Login = () => {
         });
 
         const { success } = response.data;
-        console.log({success})
         if (success) {
+          setIsLoggedIn(true);
           router.push("/");
         } else {
           throw new Error("Failed to log in, please try again later.");
@@ -63,6 +64,15 @@ const Login = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    const checkLoggedInStatus = async ()=> {
+      await magic.user.isLoggedIn() ? router.push("/") : null;
+    }
+    if (isLoggedIn) {
+      checkLoggedInStatus();
+    }
+  }, [isLoggedIn, router, magic]);
 
   useEffect(() => {
     const handleRouteChange = () => {
