@@ -63,10 +63,10 @@ const Header = ({ children }) => {
         // console.log("Failed to fetch user email", err.message);
       }
     };
-    if (magic) {
+    if (magic && !username) {
       fetchUserEmail();
     }
-  }, [magic]);
+  }, [magic, username]);
 
   // State to manage the currently active tab
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
@@ -102,8 +102,8 @@ const Header = ({ children }) => {
 
   const handleSignOutClick = async () => {
     try {
-      await axios.post("/api/signout");
       await magic.user.logout();
+      await axios.post("/api/signout");
       setUsername("");
       router.push("/login");
     } catch (err) {

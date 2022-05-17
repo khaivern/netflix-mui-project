@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import axios from "axios";
 
-import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -25,15 +23,11 @@ const Login = () => {
       setEmailHelperText("");
     }
   };
-
+  
   const magic = constructMagicSDKInstance();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
   const signInHandler = async (e) => {
     e.preventDefault();
     setErrorMessage("");
-    setIsLoading(true);
     try {
       const DIDToken = await magic.auth.loginWithMagicLink({ email });
       if (DIDToken) {
@@ -41,17 +35,19 @@ const Login = () => {
           lifespan: 7 * 24 * 60 * 60,
         });
 
-        const response = await axios.get("/api/login", {
-          headers: {
-            Authorization: `Bearer ${DIDTokenWithCustomLifeSpan}`,
-            "Content-type": "application/json",
-          },
-        });
-
-        const { success } = response.data;
-        if (success) {
-          setIsLoggedIn(true);
-          router.push("/");
+        const response = await axios.post(
+          "/api/login",
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${DIDTokenWithCustomLifeSpan}`,
+              "Content-type": "application/json",
+            },
+          }
+        );
+        if (response.status === 200) {
+          console.log("Made here")
+          window.location = window.location.origin + "/"
         } else {
           throw new Error("Failed to log in, please try again later.");
         }
@@ -61,33 +57,8 @@ const Login = () => {
     } catch (err) {
       // console.log("Error Logging in magic", err.message);
       setErrorMessage(err.message);
-      setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    const checkLoggedInStatus = async ()=> {
-      await magic.user.isLoggedIn() ? router.push("/") : null;
-    }
-    if (isLoggedIn) {
-      checkLoggedInStatus();
-    }
-  }, [isLoggedIn, router, magic]);
-
-  useEffect(() => {
-    const handleRouteChange = () => {
-      setIsLoading(false);
-    };
-    // subscribe to event changes
-    router.events.on("routeChangeComplete", handleRouteChange);
-    router.events.on("routeChangeError", handleRouteChange);
-
-    return () => {
-      // Unsubscribe from event changes
-      router.events.off("routeChangeComplete", handleRouteChange);
-      router.events.off("routeChangeError", handleRouteChange);
-    };
-  }, [router]);
 
   return (
     <Grid
@@ -143,25 +114,19 @@ const Login = () => {
                 </Box>
               </Grid>
               <Grid item>
-                {isLoading ? (
-                  <Box sx={{ display: "flex" }} justifyContent='center'>
-                    <CircularProgress />
-                  </Box>
-                ) : (
-                  <Button
-                    type='submit'
-                    variant='contained'
-                    fullWidth
-                    sx={{
-                      "&.Mui-disabled": {
-                        color: "rgba(255,255,255,1)",
-                        backgroundColor: "rgba(255,255,255,0.7)",
-                      },
-                    }}
-                    disabled={!email || !!emailHelperText}>
-                    Sign In
-                  </Button>
-                )}
+                <Button
+                  type='submit'
+                  variant='contained'
+                  fullWidth
+                  sx={{
+                    "&.Mui-disabled": {
+                      color: "rgba(255,255,255,1)",
+                      backgroundColor: "rgba(255,255,255,0.7)",
+                    },
+                  }}
+                  disabled={!email || !!emailHelperText}>
+                  Sign In
+                </Button>
               </Grid>
               {errorMessage && (
                 <Grid item marginTop='1.5rem'>
