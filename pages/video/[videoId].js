@@ -99,7 +99,7 @@ const VideoDetailPage = ({ videoDetailsObject }) => {
         });
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setReaction(null);
       setAlertData({ message: "Failed to save video", status: "error" });
     }
@@ -120,7 +120,7 @@ const VideoDetailPage = ({ videoDetailsObject }) => {
           setReaction(data.video.favourited);
         }
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     if (!videoDetailsObject || reaction) {
@@ -462,7 +462,7 @@ export async function getStaticProps(context) {
       revalidate: 1000,
     };
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     return {
       redirect: {
         destination: "/",

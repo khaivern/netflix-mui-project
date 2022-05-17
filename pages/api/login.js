@@ -33,7 +33,7 @@ export default async function handler(req, res) {
     createCookie({ token, DIDToken }, res);
     return res.status(200).json({ success: true, message: "Success, logged user in" });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     return res.status(500).json({ success: false, message: "Failed to login" });
   }
 }

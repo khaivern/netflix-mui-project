@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     const videos = await getListOfVideosByVideoIds(videoIds);
     return res.status(200).json({ message: "Successfully fetched videos", videos });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     return res
       .status(500)
       .json({ message: "Server error, failed requesting list of videos from Youtube" });

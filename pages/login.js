@@ -57,7 +57,7 @@ const Login = () => {
         throw new Error("No DIDToken or failed logged in check was returned");
       }
     } catch (err) {
-      console.log("Error Logging in magic", err.message);
+      // console.log("Error Logging in magic", err.message);
       setIsLoading(false);
     }
   };

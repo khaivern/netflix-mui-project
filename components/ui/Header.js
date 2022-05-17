@@ -60,7 +60,7 @@ const Header = ({ children }) => {
         const { email } = await magic.user.getMetadata();
         setUsername(email);
       } catch (err) {
-        console.log("Failed to fetch user email", err.message);
+        // console.log("Failed to fetch user email", err.message);
       }
     };
     if (magic) {
@@ -107,7 +107,7 @@ const Header = ({ children }) => {
       setUsername("");
       router.push("/login");
     } catch (err) {
-      console.log("Error logging out:", err.message);
+      // console.log("Error logging out:", err.message);
       router.push("/login");
     }
   };
